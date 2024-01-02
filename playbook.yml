@@ -1,0 +1,17 @@
+---
+- name: Install Nginx and MariaDB
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+      when: "'web_servers' in group_names"
+
+    - name: Install MariaDB
+      apt:
+        name: mariadb-server
+        state: present
+      when: "'db_servers' in group_names"
